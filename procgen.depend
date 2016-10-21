@@ -1,0 +1,86 @@
+# depslib dependency file v1.0
+1477012291 source:/home/varenka/Desktop/procgen/main.cpp
+	<iostream>
+	<GL/glew.h>
+	<ctime>
+	"window.h"
+	"shader.h"
+	"mesh.h"
+	"texture.h"
+	"transform.h"
+	"camera.h"
+
+1476232869 /home/varenka/Desktop/procgen/window.h
+	<SDL2/SDL.h>
+	<GL/glew.h>
+	<string>
+	<iostream>
+
+1476999339 source:/home/varenka/Desktop/procgen/window.cpp
+	"window.h"
+
+1477000219 source:/home/varenka/Desktop/procgen/shader.cpp
+	"shader.h"
+
+1476842867 /home/varenka/Desktop/procgen/shader.h
+	<fstream>
+	<iostream>
+	<string>
+	<GL/glew.h>
+	"transform.h"
+	"camera.h"
+
+1477012493 /home/varenka/Desktop/procgen/mesh.h
+	<glm/glm.hpp>
+	<GL/glew.h>
+	<string>
+	<iostream>
+	"obj_loader.h"
+
+1477012601 source:/home/varenka/Desktop/procgen/mesh.cpp
+	"mesh.h"
+	<vector>
+
+1476304587 source:/home/varenka/Desktop/procgen/stb_image.c
+	"stb_image.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+
+1476304580 /home/varenka/Desktop/procgen/stb_image.h
+	<stdio.h>
+
+1476305513 /home/varenka/Desktop/procgen/texture.h
+	<string>
+	<GL/glew.h>
+	"stb_image.h"
+
+1476308453 source:/home/varenka/Desktop/procgen/texture.cpp
+	"texture.h"
+	<cassert>
+	<iostream>
+
+1476839624 /home/varenka/Desktop/procgen/transform.h
+	<glm/glm.hpp>
+	<glm/gtx/transform.hpp>
+
+1476842545 /home/varenka/Desktop/procgen/camera.h
+	<glm/glm.hpp>
+	<glm/gtx/transform.hpp>
+
+1476991577 /home/varenka/Desktop/procgen/obj_loader.h
+	<glm/glm.hpp>
+	<vector>
+	<string>
+
+1476991584 source:/home/varenka/Desktop/procgen/obj_loader.cpp
+	"obj_loader.h"
+	<fstream>
+	<iostream>
+	<algorithm>
+	<map>
+
