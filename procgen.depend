@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1477012291 source:/home/varenka/Desktop/procgen/main.cpp
+1478048641 source:/home/varenka/Desktop/procgen/main.cpp
 	<iostream>
 	<GL/glew.h>
 	<ctime>
@@ -9,6 +9,7 @@
 	"texture.h"
 	"transform.h"
 	"camera.h"
+	"bitleaf.h"
 
 1476232869 /home/varenka/Desktop/procgen/window.h
 	<SDL2/SDL.h>
@@ -30,14 +31,14 @@
 	"transform.h"
 	"camera.h"
 
-1477012493 /home/varenka/Desktop/procgen/mesh.h
+1478047524 /home/varenka/Desktop/procgen/mesh.h
 	<glm/glm.hpp>
 	<GL/glew.h>
 	<string>
 	<iostream>
 	"obj_loader.h"
 
-1477012601 source:/home/varenka/Desktop/procgen/mesh.cpp
+1478047577 source:/home/varenka/Desktop/procgen/mesh.cpp
 	"mesh.h"
 	<vector>
 
@@ -83,4 +84,11 @@
 	<iostream>
 	<algorithm>
 	<map>
+
+1478047515 source:/home/varenka/Desktop/procgen/bitleaf.cpp
+	"bitleaf.h"
+
+1478046559 /home/varenka/Desktop/procgen/bitleaf.h
+	"mesh.h"
+	<random>
 

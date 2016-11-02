@@ -7,14 +7,43 @@
 #include "texture.h"
 #include "transform.h"
 #include "camera.h"
+#include "bitleaf.h"
 
 #define WIDTH 800
 #define HEIGHT 600
 
 using namespace std;
 
+IndexedModel TCreateQuad(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3, glm::vec3 v4)
+{
+    IndexedModel model;
+
+    model.positions.push_back(v1);
+    model.positions.push_back(v2);
+    model.positions.push_back(v3);
+    model.positions.push_back(v4);
+
+    ///First tri: (v1, v3, v4)
+    model.indices.push_back(0);
+    model.indices.push_back(2);
+    model.indices.push_back(3);
+
+    ///Second tri: (v1, v2, v4)
+    model.indices.push_back(0);
+    model.indices.push_back(1);
+    model.indices.push_back(3);
+
+    ///Make all texCoords 0 for now
+    for(int i = 0; i < 4; i++)
+        model.texCoords.push_back(glm::vec2(0.0f, 0.0f));
+
+    model.normals.reserve(4);
+    model.CalcNormals();
+}
+
 int main(int argc, char* argv[])
 {
+    srand(time(NULL));
     ///Start setup timer
     clock_t start;
     start = clock();
@@ -29,6 +58,7 @@ int main(int argc, char* argv[])
 
     Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
     Mesh mesh2("./res/monkey3.obj");
+    Mesh quad = TCreateQuad(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 
     Shader shader("./res/basicShader");
 
@@ -50,10 +80,10 @@ int main(int argc, char* argv[])
         ///Start frame timer
         start = clock();
 
-        window.Clear(0.0f, 0.15f, 0.3f, 1.0f);
-
         float sinCounter = sinf(counter);
         float cosCounter = cosf(counter);
+
+        window.Clear(0.0f, 0.15f, 0.15f, 1.0f);
 
 //        transform.GetPos().x = sinCounter;
 //        transform.GetRot().x = counter;
@@ -65,7 +95,7 @@ int main(int argc, char* argv[])
         shader.Bind();
         texture.Bind(0);
         shader.Update(transform, camera);
-        mesh2.Draw();
+        quad.Draw();
 
         window.Update();
         counter += 0.01f;

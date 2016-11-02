@@ -34,12 +34,14 @@ class Mesh
 public:
     Mesh(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
     Mesh(const string& fileName);
+    Mesh(const IndexedModel& model);
+    Mesh();
 
+    void AddModel(const IndexedModel& model);
     void Draw();
 
     virtual ~Mesh();
 private:
-    Mesh(const Mesh& other) {}
     void operator=(const Mesh& other) {}
 
     void InitMesh(const IndexedModel& model);
@@ -54,6 +56,8 @@ private:
 
         NUM_BUFFERS
     };
+
+    IndexedModel m_model;
 
     GLuint m_vertexArrayObject;
     GLuint m_vertexArrayBuffers[NUM_BUFFERS];
