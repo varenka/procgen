@@ -6,7 +6,6 @@
 class Bitleaf
 {
 public:
-    Bitleaf() {}
 
     ///RNG functions
     static float randf(float, float);

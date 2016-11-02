@@ -14,33 +14,6 @@
 
 using namespace std;
 
-IndexedModel TCreateQuad(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3, glm::vec3 v4)
-{
-    IndexedModel model;
-
-    model.positions.push_back(v1);
-    model.positions.push_back(v2);
-    model.positions.push_back(v3);
-    model.positions.push_back(v4);
-
-    ///First tri: (v1, v3, v4)
-    model.indices.push_back(0);
-    model.indices.push_back(2);
-    model.indices.push_back(3);
-
-    ///Second tri: (v1, v2, v4)
-    model.indices.push_back(0);
-    model.indices.push_back(1);
-    model.indices.push_back(3);
-
-    ///Make all texCoords 0 for now
-    for(int i = 0; i < 4; i++)
-        model.texCoords.push_back(glm::vec2(0.0f, 0.0f));
-
-    model.normals.reserve(4);
-    model.CalcNormals();
-}
-
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
@@ -50,16 +23,21 @@ int main(int argc, char* argv[])
 
     Window window(WIDTH, HEIGHT, "Test");
 
-    Vertex vertices[] = { Vertex(glm::vec3(-0.5, -0.5, 0), glm::vec2(0, 0)),
-                          Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.5, 1.0)),
-                          Vertex(glm::vec3(0.5, -0.5, 0), glm::vec2(1.0, 0.0)) };
+    Vertex vertices[] = { Vertex(glm::vec3(0, 1, 0), glm::vec2(0, 0)),
+                          Vertex(glm::vec3(0, 0, 0), glm::vec2(0.5, 1.0)),
+                          Vertex(glm::vec3(1, 0, 0), glm::vec2(1.0, 0.0)),
+                          Vertex(glm::vec3(1, 1, 0), glm::vec2(1.0, 0.0))
+                        };
 
-    unsigned int indices[] = { 0, 1, 2 };
+    unsigned int indices[] = { 0, 1, 2, 0, 2, 3 };
 
     Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
-    Mesh mesh2("./res/monkey3.obj");
-    Mesh quad = TCreateQuad(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    //Mesh mesh2("./res/monkey3.obj");
 
+    /*
+    Mesh quad;
+    quad.AddModel(Bitleaf::CreateQuad(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f)));
+    */
     Shader shader("./res/basicShader");
 
     Texture texture("./res/bricks.jpg");
@@ -95,7 +73,7 @@ int main(int argc, char* argv[])
         shader.Bind();
         texture.Bind(0);
         shader.Update(transform, camera);
-        quad.Draw();
+        mesh.Draw();
 
         window.Update();
         counter += 0.01f;

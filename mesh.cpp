@@ -113,8 +113,12 @@ void Mesh::InitMesh(const IndexedModel& model)
 
 void Mesh::AddModel(const IndexedModel& model)
 {
-    for(unsigned int i = 0; i < model.positions.size(); i++)
+    cout << "Started AddModel()" << endl;
+    for(int i = 0; i < model.positions.size(); i++)
+    {
+        cout << "i=" << i << " model.positions.size()=" << model.positions.size() << endl;
         m_model.positions.push_back(model.positions[i]);
+    }
 
     for(unsigned int i = 0; i < model.normals.size(); i++)
         m_model.normals.push_back(model.normals[i]);
@@ -124,7 +128,7 @@ void Mesh::AddModel(const IndexedModel& model)
 
     for(unsigned int i = 0; i < model.indices.size(); i++)
         m_model.indices.push_back(model.indices[i] + (m_model.indices.size() - 1));
-
+    cout << "Finished AddModel()" << endl;
 }
 
 void Mesh::Draw()

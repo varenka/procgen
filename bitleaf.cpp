@@ -22,7 +22,8 @@ glm::vec3 Bitleaf::randxz(float x, float y, float z)
     return glm::vec3(randf(-x, x), y, randf(-z, z));
 }
 ///TODO: TexCoords
-IndexedModel CreateQuad(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3, glm::vec3 v4)
+
+IndexedModel Bitleaf::CreateQuad(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3, glm::vec3 v4)
 {
     IndexedModel model;
 
@@ -45,8 +46,11 @@ IndexedModel CreateQuad(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3, glm::vec3 v4)
     for(int i = 0; i < 4; i++)
         model.texCoords.push_back(glm::vec2(0.0f, 0.0f));
 
-    model.normals.reserve(4);
+    for(int i = 0; i < 6; i++)
+        model.normals.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+
     model.CalcNormals();
+    cout << "model.positions.size=" << model.positions.size() << " at end of TC" << endl;
 }
 
 Mesh Bitleaf::RandomGrass()
